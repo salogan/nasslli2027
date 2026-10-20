@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NASSLLI 2027 — Kansas State University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EDE7D8;
+    --bg-alt: #E4DDC8;
+    --panel: #F5F1E4;
+    --ink: #2A2A1E;
+    --ink-soft: #57543F;
+    --ink-faint: #7A7660;
+    --gold: #93690F;
+    --gold-deep: #714F0B;
+    --blue: #2F5169;
+    --line: #C9C0A0;
+    --line-soft: #DAD3B9;
+    --radius: 3px;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1C1C13;
+      --bg-alt: #232216;
+      --panel: #26251A;
+      --ink: #ECE6D4;
+      --ink-soft: #C2BC9F;
+      --ink-faint: #8F8A6F;
+      --gold: #D9AE4E;
+      --gold-deep: #EFC46A;
+      --blue: #86ABC4;
+      --line: #3E3C29;
+      --line-soft: #322F20;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1C1C13;
+    --bg-alt: #232216;
+    --panel: #26251A;
+    --ink: #ECE6D4;
+    --ink-soft: #C2BC9F;
+    --ink-faint: #8F8A6F;
+    --gold: #D9AE4E;
+    --gold-deep: #EFC46A;
+    --blue: #86ABC4;
+    --line: #3E3C29;
+    --line-soft: #322F20;
+  }
+  * { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px)); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Public Sans', -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; margin: 0; color: var(--ink); }
+  a { color: var(--gold); text-decoration-color: var(--line); text-underline-offset: 3px; }
+  a:hover { color: var(--gold-deep); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .wide { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav.top {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(237, 231, 216, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line-soft);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  @media (prefers-color-scheme: dark) { nav.top { background: rgba(28, 28, 19, 0.92); } }
+  :root[data-theme="dark"] nav.top { background: rgba(28, 28, 19, 0.92); }
+  .nav-inner { max-width: 900px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .nav-brand { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 20px; flex-wrap: wrap; font-size: 0.92rem; }
+  .nav-links a { color: var(--ink-soft); text-decoration: none; }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* Hero */
+  .hero { position: relative; overflow: hidden; padding: 72px 0 56px; border-bottom: 1px solid var(--line-soft); }
+  .hero-hills { position: absolute; inset: 0; z-index: 0; opacity: 0.5; pointer-events: none; }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-kicker { font-size: 0.98rem; color: var(--ink-soft); margin-bottom: 14px; max-width: 34em; }
+  .hero h1 { font-size: clamp(2.6rem, 7vw, 4.4rem); line-height: 0.98; letter-spacing: -0.01em; }
+  .hero-sub { margin-top: 18px; font-size: 1.15rem; color: var(--ink-soft); max-width: 34em; }
+  .hero-sub strong { color: var(--ink); font-weight: 600; }
+  .fee-note { margin-top: 22px; padding: 10px 16px; border-left: 3px solid var(--gold); background: var(--panel); display: inline-block; font-size: 0.98rem; color: var(--ink-soft); max-width: 34em; }
+  .fee-note strong { color: var(--ink); }
+
+  section { padding: 56px 0; border-bottom: 1px solid var(--line-soft); }
+  section:last-of-type { border-bottom: none; }
+  section.alt { background: var(--bg-alt); }
+  h2.section-title { font-size: 1.7rem; margin-bottom: 20px; }
+  .lede { color: var(--ink-soft); font-size: 1.03rem; max-width: 62ch; }
+  p { max-width: 68ch; }
+
+  /* CFP block */
+  .cfp-block h3 { font-size: 1.05rem; margin-top: 34px; margin-bottom: 10px; color: var(--blue); }
+  .cfp-block ul { padding-left: 1.2em; max-width: 62ch; }
+  .cfp-block li { margin-bottom: 6px; }
+  .signoff { margin-top: 28px; font-style: italic; color: var(--ink-soft); }
+
+  /* Timeline */
+  .timeline { list-style: none; margin: 28px 0 0; padding: 0; max-width: 60ch; }
+  .timeline li { position: relative; padding: 0 0 30px 32px; border-left: 2px solid var(--line); }
+  .timeline li:last-child { border-left: 2px solid transparent; padding-bottom: 0; }
+  .timeline li::before { content: ""; position: absolute; left: -7px; top: 3px; width: 12px; height: 12px; border-radius: 50%; background: var(--panel); border: 2px solid var(--gold); }
+  .timeline .t-date { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.15rem; }
+  .timeline .t-label { color: var(--ink-soft); margin-top: 2px; }
+
+  /* Committee */
+  .roster-group-title { font-size: 1.05rem; color: var(--blue); margin: 30px 0 6px; }
+  .roster-group-title:first-of-type { margin-top: 6px; }
+  .roster { margin-top: 0; max-width: 62ch; }
+  .roster-row { display: flex; gap: 18px; padding: 14px 0; border-top: 1px solid var(--line-soft); align-items: baseline; flex-wrap: wrap; }
+  .roster-row:last-child { border-bottom: 1px solid var(--line-soft); }
+  .roster-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; flex: 1 1 220px; }
+  .roster-role { color: var(--blue); font-size: 0.95rem; flex: 1 1 220px; }
+  .roster-note { margin-top: 18px; color: var(--ink-faint); font-size: 0.95rem; font-style: italic; max-width: 60ch; }
+
+  /* Venue */
+  .venue-facts { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 14px; max-width: 62ch; }
+  .venue-facts li { padding-left: 18px; border-left: 2px solid var(--gold); color: var(--ink-soft); }
+  .venue-facts strong { color: var(--ink); }
+
+  /* Past NASSLLI */
+  .past-list { list-style: none; padding: 0; margin: 24px 0 0; max-width: 62ch; }
+  .past-list li { padding: 13px 0; border-top: 1px solid var(--line-soft); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .past-list li:last-child { border-bottom: 1px solid var(--line-soft); }
+  .past-year { font-family: 'Fraunces', serif; font-weight: 600; color: var(--ink); }
+  .past-place { color: var(--ink-soft); font-size: 0.95rem; }
+  .past-list a { white-space: nowrap; }
+  .past-more { margin-top: 16px; font-size: 0.92rem; }
+
+  /* Contact / footer */
+  .contact-line { margin-top: 18px; }
+  .contact-line span.role { color: var(--ink-soft); }
+  .placeholder { color: var(--ink-faint); font-style: italic; }
+  footer { padding: 40px 0 calc(40px + env(safe-area-inset-bottom, 0px)); text-align: left; color: var(--ink-faint); font-size: 0.9rem; }
+
+  @media (max-width: 560px) {
+    .hero { padding: 56px 0 40px; }
+    section { padding: 44px 0; }
+    .roster-row { flex-direction: column; gap: 4px; }
+    .roster-name, .roster-role { flex: 0 0 auto; }
+    .past-list li { flex-direction: column; gap: 2px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">NASSLLI 2027</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#cfp">Call for Proposals</a>
+      <a href="#dates">Dates</a>
+      <a href="#committee">Committee</a>
+      <a href="#venue">Venue</a>
+      <a href="#sep">After NASSLLI</a>
+      <a href="#past">Past NASSLLI</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <svg class="hero-hills" viewBox="0 0 1200 420" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,320 C150,270 300,350 480,300 C660,250 820,330 1000,290 C1100,268 1160,280 1200,270 L1200,420 L0,420 Z" fill="var(--gold)" opacity="0.10"/>
+    <path d="M0,360 C180,320 340,390 520,350 C700,310 860,380 1040,340 C1120,322 1160,332 1200,326 L1200,420 L0,420 Z" fill="var(--blue)" opacity="0.10"/>
+    <path d="M0,395 C200,368 380,410 560,388 C760,364 900,404 1200,380 L1200,420 L0,420 Z" fill="var(--ink)" opacity="0.06"/>
+  </svg>
+  <div class="wide hero-content">
+    <p class="hero-kicker">North American Summer School in Logic, Language, and Information</p>
+    <h1>NASSLLI 2027</h1>
+    <p class="hero-sub">Hosted by the Department of Philosophy at <strong>Kansas State University</strong>, <strong>June 21&ndash;25, 2027</strong>, in Manhattan, Kansas, in the Flint Hills of northeastern Kansas.</p>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <h2 class="section-title">About NASSLLI</h2>
+    <p class="lede">
+      NASSLLI courses are aimed at an interdisciplinary audience of advanced undergraduates, graduate students, and postdoctoral scholars in mathematics, computer science, philosophy, cognitive science, linguistics, and cognate fields. Courses are encouraged to cross boundaries between disciplines &mdash; the purpose of the school, carried as much by its collegial, community-building atmosphere as by any single course, is to introduce students and scholars in one area to the tools, results, and techniques of another.
+    </p>
+    <p class="lede">
+      Courses typically meet for about 90 minutes each day, Monday through Friday. Weekend &ldquo;bootcamp&rdquo; tutorials are sometimes offered the weekend before the main week begins.
+    </p>
+  </div>
+</section>
+
+<section id="cfp" class="alt">
+  <div class="wrap cfp-block">
+    <h2 class="section-title">Call for Course Proposals</h2>
+    <p>
+      The <a href="https://www.k-state.edu/philos/" target="_blank" rel="noopener">Department of Philosophy at Kansas State University</a> is happy to invite course proposals for the 2027 North American Summer School in Logic, Language, and Information, to be held June 21&ndash;25, 2027, at Kansas State University in Manhattan, Kansas.
+    </p>
+    <p>
+      Courses should aim to be accessible to the intended audience (advanced undergraduates, graduate students, and postdoctoral scholars in mathematics, computer science, philosophy, cognitive science, linguistics, and cognate fields). Courses addressing interdisciplinary topics are particularly encouraged, but courses focusing on single topic areas that would be accessible to students and scholars working in other fields are permissible as well.
+    </p>
+    <p>
+      For a sense of course content and format, it may help to look through recent iterations of NASSLLI &mdash; see the <a href="#past">Past NASSLLI</a> section below.
+    </p>
+
+    <h3>Proposal Requirements</h3>
+    <ul>
+      <li>Title &amp; instructor(s)</li>
+      <li>Outline of proposed course content (up to 500 words)</li>
+      <li>Brief statement of teaching experience, especially in interdisciplinary settings</li>
+      <li>Anticipated travel costs excluding accommodations, including whether &mdash; and to what extent &mdash; this may be self-funded (see <a href="#funding">Funding</a>, below)</li>
+      <li>Any special equipment, requirements, or accommodations that may be needed</li>
+    </ul>
+    <p>
+      Proposals are submitted via OpenReview (submission link to be announced). New profiles created without an institutional email will go through a moderation process that can take up to two weeks; profiles created with an institutional email are activated automatically.
+    </p>
+
+    <h3 id="funding">Funding</h3>
+    <p>
+	  Depending on available funding, we will be able to defray travel costs for instructors. We plan to offer accommodation for up to two instructors per course, and, contingent on overall funding, we may be able to partially reimburse additional travel expenses for some instructors. Availability of reimbursement depends on overall funding, which is still uncertain &mdash; so we strongly encourage instructors to fund their own travel and accommodation if feasible, which lets us direct more of our funding toward student scholarships and reimbursement for instructors without other funding sources.
+    </p>
+    <p>
+      We are pleased to be able to waive registration fees for Kansas educators, including K-12 and college educators. If you are a local educator who would like to attend, please contact us (see <a href="#contact">Contact</a>) and include &ldquo;NASSLLI KS Educator&rdquo; in the subject line, and we will be happy to work with you on waiving your registration fees.
+    </p>
+
+    <p class="signoff">
+      All the best,<br>
+      Eileen Nutting (Program Committee Chair)<br>
+      Nathan Kellen (Organizing Committee Chair)
+    </p>
+  </div>
+</section>
+
+<section id="dates">
+  <div class="wrap">
+    <h2 class="section-title">Important Dates</h2>
+    <ol class="timeline">
+      <li>
+        <div class="t-date">December 18, 2026</div>
+        <div class="t-label">Course Proposals Due</div>
+      </li>
+      <li>
+        <div class="t-date">January 9, 2027</div>
+        <div class="t-label">Decision Notifications Sent</div>
+      </li>
+      <li>
+        <div class="t-date">June 21&ndash;25, 2027</div>
+        <div class="t-label">NASSLLI 2027 in Manhattan, Kansas (weekend bootcamp tutorials may run the days just before)</div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="committee" class="alt">
+  <div class="wrap">
+    <h2 class="section-title">Program &amp; organizing committees</h2>
+    <p class="lede">Committee membership is still being finalized. Roles below reflect confirmed acceptances so far.</p>
+
+    <h3 class="roster-group-title">Program Committee</h3>
+    <div class="roster">
+      <div class="roster-row">
+        <div class="roster-name"><a href="https://philosophy.ku.edu/people/eileen-nutting" target="_blank" rel="noopener">Eileen Nutting</a></div>
+        <div class="roster-role">Chair &middot; University of Kansas</div>
+      </div>
+      <div class="roster-row">
+        <div class="roster-name"><a href="https://faculty.rpi.edu/thomas-ferguson" target="_blank" rel="noopener">Thomas Macaulay Ferguson</a></div>
+        <div class="roster-role">Rensselaer Polytechnic Institute</div>
+      </div>
+      <div class="roster-row">
+        <div class="roster-name"><a href="https://www.cmu.edu/dietrich/philosophy/people/faculty/adam-bjorndahl.html" target="_blank" rel="noopener">Adam Bjorndahl</a></div>
+        <div class="roster-role">Carnegie Mellon University</div>
+      </div>
+      <div class="roster-row">
+        <div class="roster-name"><a href="https://logic.indiana.edu/faculty/moss/index.html" target="_blank" rel="noopener">Larry Moss</a></div>
+        <div class="roster-role">Indiana University</div>
+      </div>
+      <div class="roster-row">
+        <div class="roster-name"><a href="https://faculty.sites.iastate.edu/kyrozier/" target="_blank" rel="noopener">Kristin Yvonne Rozier</a></div>
+        <div class="roster-role">Iowa State University</div>
+      </div>
+      <div class="roster-row">
+        <div class="roster-name"><a href="https://faculty.washington.edu/ebender/" target="_blank" rel="noopener">Emily M. Bender</a></div>
+        <div class="roster-role">University of Washington</div>
+      </div>
+      <div class="roster-row">
+        <div class="roster-name"><a href="https://www.colorado.edu/cs/ashutosh-trivedi" target="_blank" rel="noopener">Ashutosh Trivedi</a></div>
+        <div class="roster-role">University of Colorado Boulder</div>
+      </div>
+    </div>
+
+    <h3 class="roster-group-title">Organizing Committee</h3>
+    <div class="roster">
+      <div class="roster-row">
+        <div class="roster-name"><a href="https://www.nathankellen.com/" target="_blank" rel="noopener">Nathan Kellen</a></div>
+        <div class="roster-role">Chair &middot; Kansas State University</div>
+      </div>
+      <div class="roster-row">
+        <div class="roster-name"><a href="https://philpeople.org/profiles/shay-logan" target="_blank" rel="noopener">Shay Logan</a></div>
+        <div class="roster-role">Kansas State University</div>
+      </div>
+      <div class="roster-row">
+        <div class="roster-name"><a href="https://philpeople.org/profiles/will-stafford" target="_blank" rel="noopener">Will Stafford</a></div>
+        <div class="roster-role">Kansas State University</div>
+      </div>
+      <div class="roster-row">
+        <div class="roster-name"><a href="https://people.cs.ksu.edu/~eyv/" target="_blank" rel="noopener">Eugene Vasserman</a></div>
+        <div class="roster-role">Kansas State University</div>
+      </div>
+    </div>
+    <p class="roster-note">Additional committee members will be listed here as invitations are confirmed.</p>
+  </div>
+</section>
+
+<section id="venue">
+  <div class="wrap">
+    <h2 class="section-title">Venue</h2>
+    <p class="lede">Kansas State University &mdash; Manhattan, Kansas</p>
+    <ul class="venue-facts">
+      <li><strong>Setting:</strong> Manhattan sits in the Flint Hills, one of the last remaining stretches of tallgrass prairie in North America. Nearby: the <a href="https://kpbs.konza.ksu.edu/" target="_blank" rel="noopener">Konza Prairie</a> hiking trails, the <a href="https://artlightmuseum.org/" target="_blank" rel="noopener">Museum of Art + Light</a>, and <a href="https://www.sunsetzoo.com/" target="_blank" rel="noopener">Sunset Zoo</a>.</li>
+      <li><strong>Getting here:</strong> we recommend flying into <a href="https://www.flymhk.com/" target="_blank" rel="noopener">Manhattan Regional Airport (MHK)</a>. <a href="https://flykc.com/" target="_blank" rel="noopener">Kansas City (MCI)</a>, <a href="https://www.salinaairport.com/" target="_blank" rel="noopener">Salina (SNI)</a>, <a href="https://www.flywichita.com/" target="_blank" rel="noopener">Wichita (ICT)</a>, and <a href="https://lincolnairport.com/" target="_blank" rel="noopener">Lincoln (LNK)</a> are all alternatives, but we can't promise transportation between any of those airports and Manhattan &mdash; if you choose one of them, plan on arranging your own transportation to and from Manhattan. </li>
+      <li><strong>On campus:</strong> the <a href="https://www.k-state.edu/insect-zoo/" target="_blank" rel="noopener">K-State Insect Zoo</a> (small admission fee) and the <a href="https://beach.k-state.edu/" target="_blank" rel="noopener">Marianna Kistler Beach Museum of Art</a> (free) are both open to visitors. We don't yet know of any specific campus events scheduled for the week &mdash; that's too far out for most calendars to be posted. Further logistical details &mdash; lodging, room assignments, local transportation &mdash; will be posted here as they're finalized.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="sep" class="alt">
+  <div class="wrap">
+    <h2 class="section-title">After NASSLLI: SEP 2027</h2>
+    <p class="lede">
+      Immediately following NASSLLI, Kansas State will also host <a href="https://meta.phil.ufl.edu/host/sep/meeting.html" target="_blank" rel="noopener">the Society for Exact Philosophy's</a> 2027 annual meeting, <strong>Saturday, June 26 through Monday, June 28, 2027</strong>, in the same city &mdash; no extra travel required if you're already here. The SEP is an international scholarly association, founded in 1970, for researchers who believe rigorous methods have a place in philosophical investigation. Its membership already spans linguistics, cognitive science, logic and mathematics, and computer science alongside philosophy, so a lot of NASSLLI's crowd will feel at home. The paper submission deadline is <strong>February 21, 2027</strong>. Keynote speakers: <a href="https://cailinoconnor.com/" target="_blank" rel="noopener">Cailin O'Connor (UC Irvine)</a>, <a href="https://philosophy.ubc.ca/profile/paul-bartha/" target="_blank" rel="noopener">Paul Bartha (University of British Columbia)</a>, and <a href="https://sites.google.com/site/teresakouri/" target="_blank" rel="noopener">Teresa Kouri Kissel (Old Dominion University)</a>.
+    </p>
+  </div>
+</section>
+
+<section id="past">
+  <div class="wrap">
+    <h2 class="section-title">Past NASSLLI</h2>
+    <p class="lede">Recent iterations of the school, for a sense of course content and format.</p>
+    <ul class="past-list">
+      <li>
+        <div>
+          <div class="past-year">NASSLLI 2025</div>
+          <div class="past-place">University of Washington, Seattle</div>
+        </div>
+        <a href="https://nasslli25.shane.st/" target="_blank" rel="noopener">nasslli25.shane.st</a>
+      </li>
+      <li>
+        <div>
+          <div class="past-year">NASSLLI 2022</div>
+          <div class="past-place">University of Southern California</div>
+        </div>
+        <a href="https://ml-la.github.io/nasslli2022/" target="_blank" rel="noopener">ml-la.github.io/nasslli2022</a>
+      </li>
+      <li>
+        <div>
+          <div class="past-year">NASSLLI 2020</div>
+          <div class="past-place">Online, hosted by Brandeis University</div>
+        </div>
+        <a href="https://www.brandeis.edu/nasslli2020/" target="_blank" rel="noopener">brandeis.edu/nasslli2020</a>
+      </li>
+      <li>
+        <div>
+          <div class="past-year">NASSLLI 2018</div>
+          <div class="past-place">Carnegie Mellon University</div>
+        </div>
+        <a href="https://www.cmu.edu/nasslli2018/" target="_blank" rel="noopener">cmu.edu/nasslli2018</a>
+      </li>
+    </ul>
+    <p class="past-more">Full history of the school: <a href="https://folli.info/?p=49" target="_blank" rel="noopener">folli.info</a></p>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="wrap">
+    <h2 class="section-title">Contact</h2>
+    <p class="contact-line"><span class="role">Proposals &amp; Proposal Submission:</span> <span>via OpenReview &mdash; submission link to be announced</span></p>
+    <p class="contact-line"><span class="role">Local Organization Questions:</span> <span><a href="mailto:nasslli2027@gmail.com">nasslli2027@gmail.com</a> &mdash; include &ldquo;NASSLLI Question&rdquo; in the subject line</span></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Kansas State University &middot; Departments of <a href="https://www.k-state.edu/philos/" target="_blank" rel="noopener">Philosophy</a>, <a href="https://www.math.ksu.edu/" target="_blank" rel="noopener">Mathematics</a>, and <a href="https://www.cs.ksu.edu/" target="_blank" rel="noopener">Computer Science</a> &middot; Manhattan, Kansas</div>
+</footer>
+
+</body>
+</html>
